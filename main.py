@@ -25,6 +25,26 @@ def infinite_norm(vec: list):
     return max([abs(val) for val in vec])
 
 
+def l1_weighted(vec: list, w: list):
+    if sum([abs(val) for val in w]) == 1:
+        print("Weights satisfy L1 requirements")
+    else:
+        print("Weights do not satisfy L1 requirements")
+    return sum([abs(a * b) for a, b in zip(vec, w)])
+
+
+def l2_weighted(vec: list, w: list):
+    if sum([abs(val) ** 2 for val in w]) ** 0.5 == 1:
+        print("Weights satisfy L2 requirements")
+    else:
+        print("Weights do not satisfy L2 requirements")
+    return sum([abs(a * b) ** 2 for a, b in zip(vec, w)]) ** 0.5
+
+
+def l_inf_weighted(vec: list, w: list):
+    return max([abs(a * b) for a, b in zip(vec, w)])
+
+
 def factorial_check():
     try:
         value = int(input("Enter an int to calculate factorial: "))
@@ -53,18 +73,30 @@ def min_max_sum(vec: list):
 
 
 def norm_test():
-    vec = input("Enter your vector: ").split()
+    vec = input("Enter your vector of length 5: ").split()
     if not is_float_vec(vec):
         print("Your vec values are not float")
         return
+    vec = [float(val) for val in vec]
+    if len(vec) != 5:
+        print("Incorrect length")
     min_max_sum(vec)
-    weights = input("Enter weights for vector: ").split()
+    weights = input("Enter weights for vector of length 5: ").split()
     if not is_float_vec(weights):
         print("Your weights are not float")
         return
+    weights = [float(val) for val in weights]
+    if len(weights) != 5:
+        print("Incorrect length")
+    if any([i <= 0 for i in weights]):
+        print("Coefficients must be positive")
     print(f"l_1 norm: {first_norm(vec)}")
     print(f"l_2 norm: {second_norm(vec)}")
     print(f"l_inf norm: {infinite_norm(vec)}")
+
+    print(f"l_1 weighted: {l1_weighted(vec, weights)}")
+    print(f"l_2 weighted: {l2_weighted(vec, weights)}")
+    print(f"l_inf weighted: {l_inf_weighted(vec, weights)}")
 
 
 # Press the green button in the gutter to run the script.
@@ -76,5 +108,6 @@ if __name__ == '__main__':
     z = sorted([*x[::2], *y[1::2]])
     print(f"z: {z}, norm = {first_norm(z)}")
     factorial_check()
+    norm_test()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
