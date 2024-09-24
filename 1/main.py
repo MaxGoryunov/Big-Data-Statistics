@@ -42,6 +42,10 @@ def l2_weighted(vec: list, w: list):
 
 
 def l_inf_weighted(vec: list, w: list):
+    if any([val <= 0 or val > 1 for val in w]):
+        print("Weights do not satisfy L_inf requirements")
+    else:
+        print("Weights satisfy L_inf requirements")
     return max([abs(a * b) for a, b in zip(vec, w)])
 
 
