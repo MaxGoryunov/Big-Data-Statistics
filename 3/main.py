@@ -9,8 +9,6 @@ from common import turning_points_statistics, kendall_rank_statistics, chi_squar
 h = 0.1
 k_values = np.arange(0, 501)
 num_coefficients = [0.01, 0.05, 0.1, 0.3]
-
-# np.random.seed(42)  # For reproducibility
 norm_random = np.random.normal(0, 1, len(k_values))
 x_k = 0.5 * np.sin(k_values * h) + norm_random
 
