@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-# np.random.seed(42)  # Setting seed for reproducibility
+
 x_k = np.random.normal(0, 1, 195)
 additional_values = [5, -4, 3.3, 2.99, -3]
 x_k = np.concatenate((x_k, additional_values))
@@ -18,8 +18,8 @@ outliers_sigma_rule = x_k[(x_k < lower_bound) | (x_k > upper_bound)]
 
 plt.figure(figsize=(12, 6))
 sns.boxplot(x=x_k)
-plt.title('Boxplot of Generated Series')
-plt.xlabel('Values')
+plt.title('Боксплот')
+plt.xlabel('Значения')
 plt.grid()
 plt.show()
 
